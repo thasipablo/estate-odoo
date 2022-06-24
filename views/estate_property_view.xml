@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <!-- Search view -->
+    <record id="estate_property_search_view" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Estate Property">
+                <field name="name" />
+                <field name="postcode" />
+                <field name="bedrooms" />
+                <filter string="Bedrooms" name="With more than 2 bedrooms" domain="[('bedrooms','>','2')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="estate_property_list_view" model="ir.ui.view">
+        <field name="name">Property List</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <!-- <tree editable="bottom"> -->
+            <tree>
+                <field name="name"/>
+                <field name="postcode"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="date_availability"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="estate_property_form_view" model="ir.ui.view">
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+
+                    <field name="property_tag_ids" widget="many2many_tags" />
+
+                    <group>
+                        <group>
+                            <field name="property_type_id" />
+                            <field name="postcode" />
+                            <field name="date_availability" />
+                        </group>
+                        <group>
+                            <field name="expected_price" />
+                            <field name="selling_price" />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- description -->
+                        <page string="Description">
+                            <group>
+                                <group>
+                                    <field name="state" />
+                                    <field name="bedrooms"/>
+                                    <field name="living_area"/>
+                                    <field name="facades"/>
+                                    <field name="garage"/>
+                                </group>
+                                <group>
+                                    <field name="garden"/>
+                                    <field name="garden_area"/>
+                                    <field name="garden_orientation"/>
+                                    <field name="description"/>
+                                </group>
+                            </group>
+                        </page>
+                        <!-- Offers -->
+                        <page string="Offers">
+                            <field name="offer_ids">
+                                <tree>
+                                    <field name="partner_id" />
+                                    <field name="price" />
+                                    <field name="status" />
+                                    <field name="property_id" />
+                                </tree>
+                            </field>
+                        </page>
+                        <!-- Other Infos -->
+                        <page string="Other Infos">
+                            <group>
+                                <field name="salesperson_id" />
+                                <field name="buyer_id" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

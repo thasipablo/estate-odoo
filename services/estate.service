@@ -1,0 +1,10 @@
+[Unit]
+Description=Odoo
+Documentation=http://www.odoo.com
+[Service]
+# Ubuntu/Debian convention:
+Type=simple
+User=odoo
+ExecStart=/opt/odoo/odoo-bin -c /opt/local_addons/estate/confs/estate.conf -i estate -d odoo14_test --dev xml
+[Install]
+WantedBy=default.target
